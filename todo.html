@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>리덕스 - TODO</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.js"></script>
+  </head>
+  <body>
+    <h3>오늘 할 일</h3>
+    <ul id="todo-list"></ul>
+
+    <div>
+      <input id="input-text" />
+      <button id="add-button">할 일 추가</button>
+    </div>
+    <script>
+      function todoReducer(state, action) {
+        switch (action.type) {
+          case "ADD_TODO":
+            return state.concat(action.text);
+          default:
+            return state;
+        }
+      }
+
+      let store = Redux.createStore(todoReducer, ["리덕스 공부하기"]);
+      let todoListElem = document.getElementById("todo-list");
+      let inputElem = document.getElementById("input-text");
+
+      function render() {
+        // 이전 TODO 목록 초기화
+        todoListElem.innerHTML = "";
+
+        // TODO 목록 렌더링
+        store.getState().forEach((todo) => {
+          const todoListItemElem = document.createElement("li");
+          todoListItemElem.textContent = todo;
+          todoListElem.appendChild(todoListItemElem);
+        });
+      }
+
+      render();
+      store.subscribe(render);
+
+      document
+        .getElementById("add-button")
+        .addEventListener("click", function () {
+          // Action을 실제로 dispatch
+          store.dispatch({
+            type: "ADD_TODO",
+            text: inputElem.value,
+          });
+
+          // Input 초기화
+          inputElem.value = "";
+        });
+    </script>
+  </body>
+</html>
