@@ -11,6 +11,7 @@
     <div>
       <input id="input-text" />
       <button id="add-button">할 일 추가</button>
+      <button id="logging-state">State Logging</button>
     </div>
     <script>
       function todoReducer(state, action) {
@@ -19,6 +20,19 @@
             return state.concat(action.text);
           default:
             return state;
+        }
+      }
+
+      function loggerMiddleware({getState}){
+        return (next) => (action) => {
+          console.log("dispatch 예정 action", action);
+
+          // Middleware chain에 있는 다음 dispatch 함수를 호출
+          const returnValue = next(action)
+
+          console.log("dispatch 이후 state", getState());
+
+          return returnValue
         }
       }
 
@@ -38,6 +52,9 @@
         });
       }
 
+
+      // Redux store의 상태가 변경될 때마다 render 함수를 호출하여 화면을 업데이트
+      // Redux의 상태를 이용하여 화면에 데이터를 동적으로 표시하고, 상태의 변화에 따라 화면을 업데이트하는 핵심적인 역할을 수행
       render();
       store.subscribe(render);
 
@@ -53,6 +70,12 @@
           // Input 초기화
           inputElem.value = "";
         });
+
+        // log button에 event listener 추가
+        document.getElementById("logging-state")
+        .addEventListener("click", function() {
+          console.log("현재 state", store.getState())
+        })
     </script>
   </body>
 </html>
