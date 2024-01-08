@@ -63,6 +63,7 @@
       }
 
       function loggerMiddleware({ getState }) {
+      function loggerMiddleware({getState}){
         return (next) => (action) => {
           console.log("dispatch 예정 action", action);
 
@@ -87,6 +88,15 @@
         Redux.applyMiddleware(loggerMiddleware)
       );
 
+          const returnValue = next(action)
+
+          console.log("dispatch 이후 state", getState());
+
+          return returnValue
+        }
+      }
+
+      let store = Redux.createStore(todoReducer, ["리덕스 공부하기"]);
       let todoListElem = document.getElementById("todo-list");
       let memoListElem = document.getElementById("memo-list");
       let inputElem = document.getElementById("input-text");
@@ -112,6 +122,9 @@
         });
       }
 
+
+      // Redux store의 상태가 변경될 때마다 render 함수를 호출하여 화면을 업데이트
+      // Redux의 상태를 이용하여 화면에 데이터를 동적으로 표시하고, 상태의 변화에 따라 화면을 업데이트하는 핵심적인 역할을 수행
       render();
       store.subscribe(render);
 
@@ -180,6 +193,11 @@
         .addEventListener("click", function () {
           store.dispatch(removeMemoActionCreator());
         });
+        // log button에 event listener 추가
+        document.getElementById("logging-state")
+        .addEventListener("click", function() {
+          console.log("현재 state", store.getState())
+        })
     </script>
   </body>
 </html>
