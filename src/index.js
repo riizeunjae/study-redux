@@ -4,13 +4,13 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import TodoApp from "./components/TodoApp";
+import TodoAppContainer from "./redux/containers/TodoAppContainer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <TodoApp />
+      <TodoAppContainer />
     </Provider>
   </React.StrictMode>
 );
