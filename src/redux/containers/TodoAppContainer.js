@@ -5,11 +5,17 @@ import { connect } from "react-redux";
 //   removeAllActionCreator,
 //   removeTodoActionCreator,
 // } from "../actions";
+// import {
+//   addTodoActionCreator,
+//   removeTodoActionCreator,
+//   removeAllActionCreator,
+// } from "../ducks/todoDuck";
+
 import {
-  addTodoActionCreator,
-  removeTodoActionCreator,
-  removeAllActionCreator,
-} from "../ducks/todoDuck";
+  addTodo as addTodoActionCreator,
+  removeTodo as removeTodoActionCreator,
+  removeAll as removeAllActionCreator,
+} from "../actions/todoAction";
 
 function mapStateToProps(state, ownProps) {
   return {
