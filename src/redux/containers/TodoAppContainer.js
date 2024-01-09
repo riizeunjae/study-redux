@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 //   removeTodoActionCreator,
 //   removeAllActionCreator,
 // } from "../ducks/todoDuck";
-
+import { fetchTodosRequested as fetchTodosRequestedActionCreator } from "../actions/fetchTodosAction";
 import {
   addTodo as addTodoActionCreator,
   removeTodo as removeTodoActionCreator,
@@ -19,7 +19,7 @@ import {
 
 function mapStateToProps(state, ownProps) {
   return {
-    todoItems: state.todo,
+    todoItems: [...state.todo, ...state.fetchTodos.data],
   };
 }
 
@@ -33,6 +33,12 @@ function mapDispatchToProps(dispatch, ownProps) {
     },
     removeAll: () => {
       dispatch(removeAllActionCreator());
+    },
+    triggerAsyncFunction: (asyncFunction) => {
+      dispatch(asyncFunction);
+    },
+    fetchTodo: () => {
+      dispatch(fetchTodosRequestedActionCreator());
     },
   };
 }
