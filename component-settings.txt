@@ -1,0 +1,21 @@
+TODO 앱에 필요한 기능 (컴포넌트 단위)
+Board 추가 기능
+Board 목록 보기 + 삭제 기능
+TODO 아이템 추가 기능
+TODO 목록 보기 + 완료여부 체크 기능 + 삭제 기능
+전체 Board 및 TODO 아이템 개수 요약 기능 + 전체 초기화 기능
+
+Slice 설계
+- boardSlice
+ - boards(Array): board들을 담고있는 배열
+  - board(object): board 객체
+   - id(number): board의 id
+   - title(string): board의 제목
+ - selectedBoardId(number): 선택된 board의 ID
+
+- todoSlice
+ - boardTodosMap(object): board ID(key)에 따른 todo 배열 (value)을 담고 있는 객체
+  - todo(object): todo 객체
+   - id(number): todo의 ID
+   - title(string): todo의 제목
+   - isFinished(boolean): todo의 완료여부
