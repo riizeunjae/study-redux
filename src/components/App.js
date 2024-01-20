@@ -4,6 +4,7 @@ import BoardMenu from "./board/BoardMenu";
 import TodoList from "./todo/TodoList";
 import { useSelector } from "react-redux";
 import TodoMenu from "./todo/TodoMenu";
+import AppBar from "./AppBar";
 
 const Wrapper = styled.div`
 width: 100%;`;
@@ -26,6 +27,7 @@ function App() {
     )
     return(
         <Wrapper>
+            <AppBar/>
             <ContentContainer>
                 <BoardContainer>
                     <BoardList/>
