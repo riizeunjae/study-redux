@@ -40,6 +40,6 @@ export const {
     deleteBoard,
     selectBoard,
     resetBoard
-} = boardSlice.action;
+} = boardSlice.actions;
 
 export default boardSlice.reducer

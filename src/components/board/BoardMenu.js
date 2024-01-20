@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { createBoard } from "../../redux/slices/boardSlice";
-
 const Wrapper = styled.div`
 padding: 16px;
 `

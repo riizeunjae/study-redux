@@ -1,4 +1,4 @@
-const { createSlice } = require("@reduxjs/toolkit")
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     boardTodosMap: {}
@@ -50,7 +50,8 @@ const todoSlice = createSlice({
 }
 });
 
-export const {addTodo,
+export const {
+    addTodo,
 toggleFinishTodo,
 deleteTodo,
 deleteBoardTodos,
